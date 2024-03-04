@@ -1,0 +1,70 @@
+:root {
+/*Custom Colours*/
+	/* Palette based on: https://coolors.co/palette/f92a82-ed7b84-f5dbcb-d6d5b3-7eb77f */
+	/* Blended colours based on https://meyerweb.com/eric/tools/color-blend/#FFFFFF:F5DBCB:3:hex*/
+	/**/
+
+	--CustomBlack: #00000;				/*Avatar border*/
+	--CustomWhite: #FDF6F2;				/*Avatar border*/
+
+	--CustomColour1: #F92A82;			/*Dark pink*/
+	--CustomColour2: #ED7B84;			/*Light pink*/
+	--CustomColour3: #F5DBCB;			/*Pale orange*/
+	--CustomColour4: #D6D5B3;			/*Light green*/
+	--CustomColour5: #7EB77F;			/*Dark green*/
+
+	--ProfileFieldsThickness: 0.0rem;	/*Line thickness between profile fields*/
+
+/*Custom Colour Assignment*/
+	--avatar-border: var(--orange1);						/*Avatar border*/
+	--profile-bg: var(--CustomColour5);						/*Background colour, profile*/
+	--bg-profile-fields: var(--CustomColour4);				/*Background colour, profile fields*/
+	--bg-accent: var(--CustomColour4);						/*Background colour, account stats*/
+	--status-focus-bg: var(--CustomColour4);				/*Background colour, timeline*/
+	--status-focus-info-bg: var(--CustomColour5);			/*Background colour, share box*/
+	--boxshadow: /*0 0.4rem 1rem -0.1rem rgba(0,0,0,0.15)*/;			/**/
+	--boxshadow-border: /*0.08rem solid var(--CustomColour3)*/;			/**/
+	--fg: var(--CustomBlack);								/*Text colour, primary*/
+	--fg-accent: var(--orange1);							/*Text colour, default links*/
+	--profile-username: var(--CustomWhite);					/*Text colour, profile username*/
+	--fg-reduced: var(--CustomWhite);						/*Text colour, share box*/
+	--bg: var(--CustomColour3);								/*Background colour*/
+	--role-admin: var(--CustomColour2);						/*Admin badge text and border colour*/
+}
+
+/*Set Variables Not In Default CSS*/
+.profile .profile-header .basic-info .namerole .username {
+				min-width: 0;
+				grid-area: username;
+				line-height: var(--username-size);
+	
+				font-size: 1rem;
+				font-weight: bold;
+				color: var(--profile-username);
+				-webkit-user-select: all;
+				        user-select: all;
+			}
+
+.profile .about-user .fields {
+		background: var(--bg-profile-fields);
+		display: flex;
+		flex-direction: column;
+		padding: 0 0.5rem;
+		padding-top: 0.25rem;
+	}
+
+.profile .about-user .fields .field {
+			padding: 0.25rem;
+			display: flex;
+			flex-direction: column;
+			border-bottom: var(--ProfileFieldsThickness) solid var(--gray2);	/*Previously 0.1rem*/
+		}
+
+.profile .about-user .fields .field:first-child {
+				border-top: var(--ProfileFieldsThickness) solid var(--gray2);	/*Previously 0.1rem*/
+			}
+
+.status .status-header > address > a .author-strap .username {
+					grid-area: user;
+					color: var(--fg-accent);
+				}
