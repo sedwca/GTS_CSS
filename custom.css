@@ -1,70 +1,152 @@
 :root {
 /*Custom Colours*/
-	/* Palette based on: https://coolors.co/palette/f92a82-ed7b84-f5dbcb-d6d5b3-7eb77f */
+	/* Pink to Green primary palette based on: https://coolors.co/palette/f92a82-ed7b84-f5dbcb-d6d5b3-7eb77f */
+	/* Blue to Brown alternate palette based on https://coolors.co/palette/006d77-83c5be-edf6f9-ffddd2-e29578 */
 	/* Blended colours based on https://meyerweb.com/eric/tools/color-blend/#FFFFFF:F5DBCB:3:hex*/
 	/**/
 
 	--CustomBlack: #00000;				/*Avatar border*/
 	--CustomWhite: #FDF6F2;				/*Avatar border*/
 
-	--CustomColour1: #F92A82;			/*Dark pink*/
-	--CustomColour2: #ED7B84;			/*Light pink*/
-	--CustomColour3: #F5DBCB;			/*Pale orange*/
-	--CustomColour4: #D6D5B3;			/*Light green*/
-	--CustomColour5: #7EB77F;			/*Dark green*/
+	--CustomColour1: #006D77;			/*Dark blue*/
+	--CustomColour2: #83C5BE;			/*Light blue*/
+	--CustomColour3: #EDF6F9;			/*Pale blue*/
+	--CustomColour4: #FFDDD2;			/*Light brown*/
+	--CustomColour5: #E29578;			/*Dark brown*/
 
 	--ProfileFieldsThickness: 0.0rem;	/*Line thickness between profile fields*/
 
 /*Custom Colour Assignment*/
-	--avatar-border: var(--orange1);						/*Avatar border*/
+	--avatar-border: var(--CustomColour1);						/*Avatar border*/
 	--profile-bg: var(--CustomColour5);						/*Background colour, profile*/
 	--bg-profile-fields: var(--CustomColour4);				/*Background colour, profile fields*/
 	--bg-accent: var(--CustomColour4);						/*Background colour, account stats*/
-	--status-focus-bg: var(--CustomColour4);				/*Background colour, timeline*/
-	--status-focus-info-bg: var(--CustomColour5);			/*Background colour, share box*/
+	--status-focus-bg: var(--CustomColour4);				/*Background colour, timeline-focus*/
+	--status-bg: var(--status-focus-bg);					/*Background colour, timeline*/
+	--status-focus-info-bg: var(--CustomColour5);			/*Background colour, share box-focus*/
+	--status-info-bg: var(--status-focus-info-bg);			/*Background colour, share box*/
+	--PollBackground: var(--CustomColour4);					/*Background colour, polls*/
 	--boxshadow: /*0 0.4rem 1rem -0.1rem rgba(0,0,0,0.15)*/;			/**/
 	--boxshadow-border: /*0.08rem solid var(--CustomColour3)*/;			/**/
 	--fg: var(--CustomBlack);								/*Text colour, primary*/
-	--fg-accent: var(--orange1);							/*Text colour, default links*/
+	--fg-accent: var(--CustomColour1);						/*Text colour, default links*/
 	--profile-username: var(--CustomWhite);					/*Text colour, profile username*/
 	--fg-reduced: var(--CustomWhite);						/*Text colour, share box*/
 	--bg: var(--CustomColour3);								/*Background colour*/
 	--role-admin: var(--CustomColour2);						/*Admin badge text and border colour*/
 }
 
-/*Set Variables Not In Default CSS*/
-.profile .profile-header .basic-info .namerole .username {
-				min-width: 0;
-				grid-area: username;
-				line-height: var(--username-size);
-	
-				font-size: 1rem;
-				font-weight: bold;
-				color: var(--profile-username);
-				-webkit-user-select: all;
-				        user-select: all;
-			}
+html, body {
+	font-family: "Noto Sans", sans-serif;
+	scrollbar-color: var(--CustomColour5) var(--CustomColour4);
+}
 
-.profile .about-user .fields {
-		background: var(--bg-profile-fields);
-		display: flex;
-		flex-direction: column;
-		padding: 0 0.5rem;
-		padding-top: 0.25rem;
+.page-header {
+	padding: 0.75rem 0.75rem 0rem 0.75rem;
+	display: none;											/*Disable header*/
+}
+
+.page-header img {
+	height: 50px;											/*Image size, GTS sloth head*/
+}
+
+.profile {
+	padding-top: 0.75rem;
+}
+
+/*Set Variables Not In Default CSS*/
+.profile .profile-header .header-image-wrapper {
+		position: relative;
+		padding-top: 25%;
 	}
 
+.profile .profile-header .basic-info .namerole .username {
+				font-weight: bold;
+				color: var(--profile-username);
+			}
+
+.profile .profile-header .basic-info .namerole .role {
+		background: var(--CustomColour4);
+		display: none;
+			}
+
+.profile .about-user .col-header {
+		margin-bottom: 0.0rem;		/*! margin-bottom: -0.25rem; */
+	}
+
+.profile .about-user {
+	display: flex;
+	flex-direction: column;
+}
+
+.profile .about-user .fields {
+	background: var(--bg-profile-fields);
+	display: flex;
+	flex-direction: column;
+	padding: 0.25rem 0.75rem 0.75rem 0.75rem;
+	order: 2;
+	border-bottom: 40px solid var(--profile-bg);
+}
+
+.profile .about-user .bio {
+	background: var(--bg-profile-fields);
+	padding: 1rem 0.75rem 0.25rem 0.75rem;
+	order: 1;
+}
+
+.profile .about-user .accountstats {
+	padding: 1rem 0.75rem 1rem 0.75rem;
+	order: 2;
+}
+
 .profile .about-user .fields .field {
-			padding: 0.25rem;
-			display: flex;
-			flex-direction: column;
-			border-bottom: var(--ProfileFieldsThickness) solid var(--gray2);	/*Previously 0.1rem*/
-		}
+	padding: 0.25rem;
+	display: flex;
+	flex-direction: column;
+	border-bottom: var(--ProfileFieldsThickness) solid var(--gray2);	/*Previously 0.1rem*/
+}
 
 .profile .about-user .fields .field:first-child {
 				border-top: var(--ProfileFieldsThickness) solid var(--gray2);	/*Previously 0.1rem*/
 			}
 
+.profile .about-user .fields .field > dd {
+				padding-left: 0.75em;
+				word-break: break-word;
+			}
+
 .status .status-header > address > a .author-strap .username {
 					grid-area: user;
 					color: var(--fg-accent);
-				}
+}
+
+.status .text .poll {
+			background-color: var(--PollBackground);
+}
+
+.status .text .poll .poll-info {
+				background-color: var(--CustomColour5);
+				color: var(--CustomWhite);
+			}
+
+.status .media .media-wrapper {
+			border: 0.0rem solid var(--gray1);
+}
+
+.page-footer nav ul li {
+
+	}
+
+.page-footer nav ul li a {
+		border: 0px solid #ff6550;
+		border-radius: var(--br);
+		background: var(--CustomColour4);
+		color: var(--CustomBlack);
+		font-size: 10pt;
+		font-weight: normal;
+		padding: 0.5rem 2.0rem 0.5rem 2.0rem;
+}
+
+#about {
+		/*display: none;	*/									/*Disable link to About Page*/
+}
